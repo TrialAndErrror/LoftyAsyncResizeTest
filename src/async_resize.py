@@ -25,7 +25,6 @@ async def async_make_resized_outputs(image: Editor, output_dir: Path, image_name
     old_x, old_y = image.image.size
     resize_factor = 1 + (RESIZE_STEP_SIZE * magnification_factor)
     new_size = int(old_x * resize_factor), int(old_y * resize_factor)
-    print(f"Resize factor: {resize_factor}")
 
     new_out_path = str(output_dir / f"{image_name} ({resize_factor * 100}%).png")
 
