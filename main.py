@@ -10,7 +10,7 @@ from PIL import Image
 
 from src.async_resize import async_resize_images
 from src.blocking import blocking_resize_one_image
-from src.mp_resize import multiprocessing_resize_image
+from src.mp_resize import advanced_mp_resize_image, multiprocessing_resize_image
 from src.paths import PathManager, get_images_from_folder
 
 
@@ -20,7 +20,8 @@ def do_multiprocessing(all_images: list[Path], out_dir: Path):
         image_name = image_file.stem
         print(f"Multiprocessing: Resizing {image_name}")
         image_data = Image.open(image_file)
-        multiprocessing_resize_image(image_data, image_name, out_dir)
+        # multiprocessing_resize_image(image_data, image_name, out_dir)
+        advanced_mp_resize_image(image_data, image_name, out_dir)
 
 
 def do_blocking(all_images: list[Path], out_dir: Path):
@@ -74,5 +75,4 @@ def main():
 
 
 if __name__ == "__main__":
-    for num in range(20):
-        main()
+    main()

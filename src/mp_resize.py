@@ -23,3 +23,9 @@ def multiprocessing_resize_image(image_data: Image, image_name: str, out_dir: Pa
         task.start()
         task.join()
 
+
+def advanced_mp_resize_image(image_data: Image, image_name: str, out_dir: Path):
+    pool = mp.Pool()
+    processes = [pool.apply_async(make_one_thread, args=(image_data.copy(), out_dir, image_name, num)) for num in range(6)]
+    result = [p.get() for p in processes]
+
