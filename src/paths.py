@@ -17,9 +17,14 @@ class PathManager:
             output_folder = output_folder / self.folder_name
 
         self.resize_inputs = self._make_directory("Inputs")
-        self.resize_outputs_multi = self._make_directory("multiprocessing", root=output_folder)
+
         self.resize_outputs_async = self._make_directory("async", root=output_folder)
         self.resize_outputs_sync = self._make_directory("sync", root=output_folder)
+
+        self.resize_outputs_multi = self._make_directory("multiprocessing", root=output_folder)
+        self.resize_outputs_multi_standard = self._make_directory("standard", root=self.resize_outputs_multi)
+        self.resize_outputs_multi_pool = self._make_directory("pool", root=self.resize_outputs_multi)
+        self.resize_outputs_multi_joblib = self._make_directory("joblib", root=self.resize_outputs_multi)
 
     def _make_directory(self, directory, root: Path = None):
         directory_path = root / directory if root else self.root / directory
